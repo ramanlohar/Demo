@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notification Example</title>
+  <style>
+    /* Your CSS styles */
+  </style>
+</head>
+<body>
+  <button onclick="requestNotificationPermission()">Request Notification Permission</button>
+
+  <script>
+    function requestNotificationPermission() {
+        Notification.requestPermission().then(function(permission) {
+            if (permission === 'granted') {
+                showNotification('Notification Title', 'This is the notification body.');
+            }
+        });
+    }
+
+    function showNotification(title, body) {
+        const notification = new Notification(title, { body });
+    }
+  </script>
+</body>
+</html>
