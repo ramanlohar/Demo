@@ -42,3 +42,25 @@ gcc -o pdf_reader pdf_reader.c $(pkg-config --cflags --libs poppler-glib)
 
 
 ./pdf_reader your_pdf_file.pdf
+
+
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build",
+            "type": "shell",
+            "command": "gcc",
+            "args": [
+                "-o",
+                "${fileDirname}/pdf_reader",
+                "${file}",
+                "$(pkg-config --cflags --libs poppler-glib)"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ]
+}
