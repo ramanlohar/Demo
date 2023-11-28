@@ -64,3 +64,7 @@ gcc -o pdf_reader pdf_reader.c $(pkg-config --cflags --libs poppler-glib)
         }
     ]
 }
+
+
+
+sudo apt-get install libpoppler-glib-dev
