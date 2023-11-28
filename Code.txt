@@ -1,0 +1,26 @@
+#include <stdio.h>
+
+int main() {
+    // Define the character set for the password
+    char charset[] = "1234567890qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM!@#$%^&*()_&-+/?!;:'\"*%=";
+
+    // Calculate the size of the character set
+    int charsetSize = sizeof(charset) - 1;
+
+    // Number of digits in the password
+    int numDigits = 4;
+
+    // Loop to generate all combinations
+    for (int i = 0; i < charsetSize; ++i) {
+        for (int j = 0; j < charsetSize; ++j) {
+            for (int k = 0; k < charsetSize; ++k) {
+                for (int l = 0; l < charsetSize; ++l) {
+                    // Print the current combination
+                    printf("%c%c%c%c\n", charset[i], charset[j], charset[k], charset[l]);
+                }
+            }
+        }
+    }
+
+    return 0;
+}
