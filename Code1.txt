@@ -1,0 +1,44 @@
+#include <poppler/glib/poppler.h>
+
+int main(int argc, char *argv[]) {
+    if (argc != 2) {
+        fprintf(stderr, "Usage: %s <pdf_file>\n", argv[0]);
+        return 1;
+    }
+
+    GError *error = NULL;
+    PopplerDocument *document;
+    PopplerPage *page;
+    gchar *text;
+
+    poppler_init(argc, argv);
+
+    document = poppler_document_new_from_file(argv[1], NULL, &error);
+    if (error != NULL) {
+        fprintf(stderr, "Error opening PDF: %s\n", error->message);
+        g_error_free(error);
+        return 1;
+    }
+
+    for (int i = 0; i < poppler_document_get_n_pages(document); i++) {
+        page = poppler_document_get_page(document, i);
+        text = poppler_page_get_text(page);
+
+        g_print("Page %d:\n%s\n", i + 1, text);
+
+        g_free(text);
+        g_object_unref(page);
+    }
+
+    g_object_unref(document);
+    poppler_cleanup();
+
+    return 0;
+}
+
+
+gcc -o pdf_reader pdf_reader.c $(pkg-config --cflags --libs poppler-glib)
+
+
+
+./pdf_reader your_pdf_file.pdf
