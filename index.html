@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-signin-client_id" content="10674903026-0vrq3pn5vlh4t2tqsqkei08ebbhkaln3.apps.googleusercontent.com">
+    <title>Google Sign-In Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        #login-container {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="login-container">
+        <h1>Google Sign-In Demo</h1>
+        <!-- Replace YOUR_CLIENT_ID with your actual OAuth 2.0 client ID -->
+        <div class="g-signin2" data-onsuccess="onSignIn" data-clientid="10674903026-0vrq3pn5vlh4t2tqsqkei08ebbhkaln3.apps.googleusercontent.com"></div>
+    </div>
+
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script>
+        // Initialize the Google API
+        function start() {
+            gapi.load('auth2', function() {
+                gapi.auth2.init({
+                    client_id: '10674903026-0vrq3pn5vlh4t2tqsqkei08ebbhkaln3.apps.googleusercontent.com',
+                });
+            });
+        }
+
+        // Call the start function on window load
+        window.onload = start;
+
+        function onSignIn(googleUser) {
+            // Get user information
+            var profile = googleUser.getBasicProfile();
+            console.log('ID: ' + profile.getId());
+            console.log('Name: ' + profile.getName());
+            console.log('Image URL: ' + profile.getImageUrl());
+            console.log('Email: ' + profile.getEmail());
+
+            // You can use the information above as needed (e.g., send it to the server for authentication).
+        }
+    </script>
+</body>
+</html>
