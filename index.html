@@ -44,10 +44,12 @@
         function onSignIn(googleUser) {
             // Get user information
             var profile = googleUser.getBasicProfile();
-            console.log('ID: ' + profile.getId());
-            console.log('Name: ' + profile.getName());
-            console.log('Image URL: ' + profile.getImageUrl());
-            console.log('Email: ' + profile.getEmail());
+            
+            // Save user information to localStorage
+            localStorage.setItem('userId', profile.getId());
+            localStorage.setItem('userName', profile.getName());
+            localStorage.setItem('userImageUrl', profile.getImageUrl());
+            localStorage.setItem('userEmail', profile.getEmail());
 
             // You can use the information above as needed (e.g., send it to the server for authentication).
         }
