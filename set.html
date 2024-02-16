@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Save to Local Storage</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Save to Local Storage</h2>
+    <textarea id="localStorageDataInput" rows="5" cols="50" placeholder="Paste your data here"></textarea>
+    <br>
+    <button onclick="saveData()">Save to Local Storage</button>
+
+    <script>
+        function saveData() {
+            const dataToSave = document.getElementById('localStorageDataInput').value;
+            
+            try {
+                const parsedData = JSON.parse(dataToSave);
+                for (const key in parsedData) {
+                    localStorage.setItem(key, parsedData[key]);
+                }
+                alert('Data saved to local storage!');
+            } catch (error) {
+                alert('Invalid JSON data. Please check and try again.');
+            }
+        }
+    </script>
+</body>
+</html>
